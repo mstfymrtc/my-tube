@@ -12,25 +12,21 @@ class SearchBar extends Component {
     this.state = { term: "" };
   }
   render() {
-    // return (<input onChange={this.handleInputChange} />)
     return (
       <div className="search-bar">
         <input
           //TODO:bi alttaki satırı yazmazsak, input'un valuesi değişmez.
           //Sadece event trigger etmiş oluruz.
           value={this.state.term}
-          onChange={event => this.setState({ term: event.target.value })}
+          onChange={event => this.onInputChange(event.target.value)}
         />
       </div>
     );
   }
 
-  /*
-     event handle fonksiyonu:
-     handleInputChange(event) {
-         console.log(event.target.value)
- 
-     }
- */
+  onInputChange(term) {
+    this.setState({ term });
+    this.props.onSearchTermChange(term);
+  }
 }
 export default SearchBar;
